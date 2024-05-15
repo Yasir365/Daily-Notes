@@ -2,8 +2,7 @@ const User = require('../models/user.model');
 const verifySchema = require('../validators/validate');
 const schema = require('../validators/schema.json');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
+const {generateToken} = require('../middlewares/jwt.service')
 
 const register = async (req, res) => {
     const verifyReq = verifySchema(schema.register, req.body);
@@ -52,16 +51,12 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Incorrect Email or Password' });
         }
 
-        // Generate JWT token
-        const token = jwt.sign(
-            { userId: user._id, email: user.email, name: user.name, role: user.role },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
-
         // Exclude password field from user data
         const userData = { ...user.toObject() };
         delete userData.password;
+
+        // Generate JWT token
+        const token = generateToken(userData)
 
         // Return user data without the password along with the token
         return res.status(200).json({

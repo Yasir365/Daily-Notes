@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const authroutes = require('./auth.routes.js');
-const todoroutes = require('./todo.routes.js');
+const authRoutes = require('./auth.routes.js');
+const ticketsRoutes = require('./tickets.routes.js');
+const { authenticateToken } = require('../middlewares/jwt.service');
 
-router.use('/auth', authroutes);
-router.use('/todo', todoroutes);
+router.use('/auth', authRoutes);
+router.use('/tickets', authenticateToken, ticketsRoutes);
 
 module.exports = router;

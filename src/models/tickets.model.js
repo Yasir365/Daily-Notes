@@ -5,12 +5,21 @@ const todoSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    deadlineDate: {
+    deadline: {
         type: Date,
         required: true
     },
     description: {
         type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     status: {
@@ -20,6 +29,6 @@ const todoSchema = new mongoose.Schema({
     }
 });
 
-const Todo = mongoose.model('Todo', todoSchema);
+const Tickets = mongoose.model('Tickets', todoSchema);
 
-module.exports = Todo;
+module.exports = Tickets;
