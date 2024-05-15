@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 // Routes config
-app.use('/api/daily-notes/v1', route)
+app.use('/api/ticketing-system/v1', route)
 app.get("/", (req, res) => {
-  res.json({ message: "A Notes App in which you can add your notes." });
+  res.json({ message: "Welcome to Ticketing System. In this app you can create, read, update and delete tickets for your business." });
 });
 app.use(function (req, res) {
   return res.status(400).send({ message: "Sorry! Route not found" });
