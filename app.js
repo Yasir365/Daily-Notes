@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
 const connectDB = require('./database/db.config.js');
-const route = require('./routes/index.js');
+const route = require('./routes/index.routes.js');
 const app = express();
 
 var corsOptions = {
