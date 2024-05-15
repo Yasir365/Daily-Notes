@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Online-Notes": {
+    "Ticket-System": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/online-notes",
+            "outputPath": "dist/ticket-system",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Online-Notes:build:production"
+              "buildTarget": "Ticket-System:build:production"
             },
             "development": {
-              "buildTarget": "Online-Notes:build:development"
+              "buildTarget": "Ticket-System:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Online-Notes:build"
+            "buildTarget": "Ticket-System:build"
           }
         },
         "test": {
