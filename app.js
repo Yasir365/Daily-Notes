@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 // Routes config
-app.use('/api/todo-app/v1', route)
+app.use('/api/Notes/v1', route)
 app.get("/", (req, res) => {
-  res.json({ message: "A practice app for Nodejs." });
+  res.json({ message: "A Notes App in which you can add your notes." });
 });
 app.use(function (req, res) {
   return res.status(400).send({ message: "Sorry! Route not found" });
