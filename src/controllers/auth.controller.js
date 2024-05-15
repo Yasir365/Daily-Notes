@@ -2,6 +2,8 @@ const User = require('../models/user.model');
 const verifySchema = require('../validators/validate');
 const schema = require('../validators/schema.json');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 const register = async (req, res) => {
     const verifyReq = verifySchema(schema.register, req.body);
@@ -33,9 +35,8 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const verifyReq = verifySchema(schema.login, req.body);
     if (!verifyReq.success) {
-        return res.status(201).send(verifyReq.message);
+        return res.status(400).send(verifyReq.message);
     }
-    res.json(await validate_user(req.body));
 
     const { email, password } = req.body;
     try {
@@ -45,16 +46,33 @@ const login = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Check if password is correct
-        if (user.password !== password) {
-            return res.status(401).json({ message: 'Incorrect password' });
+        // Compare hashed passwords
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Incorrect Email or Password' });
         }
 
-        // Return success response
-        return res.status(200).json({ message: 'Login successful', user });
+        // Generate JWT token
+        const token = jwt.sign(
+            { userId: user._id, email: user.email, name: user.name, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        // Exclude password field from user data
+        const userData = { ...user.toObject() };
+        delete userData.password;
+
+        // Return user data without the password along with the token
+        return res.status(200).json({
+            message: 'Login successful',
+            data: userData,
+            token: token 
+        });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 module.exports = { login, register };

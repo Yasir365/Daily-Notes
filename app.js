@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
-const connectDB = require('./database/db.config.js');
-const route = require('./routes/index.routes.js');
+const connectDB = require('./src/database/db.config.js');
+const route = require('./src/routes/index.routes.js');
 const app = express();
 
 var corsOptions = {
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 // Routes config
-app.use('/api/Notes/v1', route)
+app.use('/api/daily-notes/v1', route)
 app.get("/", (req, res) => {
   res.json({ message: "A Notes App in which you can add your notes." });
 });
