@@ -4,6 +4,7 @@ require('dotenv').config();
 const connectDB = require('./src/database/db.config.js');
 const route = require('./src/routes/index.routes.js');
 const app = express();
+require('./src/cronjobs/status-update.js');
 
 var corsOptions = {
   origin: "http://localhost:4200"
