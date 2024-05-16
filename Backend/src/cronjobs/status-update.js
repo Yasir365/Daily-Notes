@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const Tickets = require('../models/tickets.model');
 
 
-cron.schedule('*/10 * * * * *', async () => {
+cron.schedule('0 * * * * ', async () => {
     try {
         const expiredTickets = await Tickets.find({
             status: 'pending',
