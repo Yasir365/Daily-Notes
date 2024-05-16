@@ -28,6 +28,7 @@
       "properties": {
           "title": { "type": "string" },
           "description": { "type": "string" },
+          "status": { "type": "string" },
           "deadline": { "type": "string", "format": "date-time" }
       },
       "required": ["title", "description", "deadline"],
