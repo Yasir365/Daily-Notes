@@ -23,6 +23,49 @@
     },
 
 
+    "verifyEmail": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "otp": { "type": "string" }
+      },
+      "required": ["otp", "email"],
+      "additionalProperties": false
+    },
+
+    "forgetPassword": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" }
+      },
+      "required": ["email"],
+      "additionalProperties": false
+    },
+    
+    
+    "resetPassword": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "otp": { "type": "string" },
+        "password": { "type": "string" }
+      },
+      "required": ["email", "otp", "password"],
+      "additionalProperties": false
+    },
+    
+    
+    "changePassword": {
+      "type": "object",
+      "properties": {
+        "oldPassword": { "type": "string" },
+        "newPassword": { "type": "string" }
+      },
+      "required": ["oldPassword", "newPassword"],
+      "additionalProperties": false
+    },
+
+
     "addTicket": {
       "type": "object",
       "properties": {

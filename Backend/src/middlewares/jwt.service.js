@@ -22,7 +22,7 @@ const authenticateToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ message: 'Invalid token' });
         }
-        req.userId = decodedToken.userId; // Attach _id from decoded token to req._id
+        req.user = decodedToken;
         next();
     });
 };

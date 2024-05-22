@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
-const connectDB = require('./src/database/db.config.js');
+const connectDB = require('./src/config/db.config.js');
 const route = require('./src/routes/index.routes.js');
 const app = express();
 require('./src/cronjobs/status-update.js');

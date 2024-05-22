@@ -4,7 +4,7 @@ const schema = require('../validators/schema.json');
 
 const list = async (req, res) => {
     try {
-        const tickets = await Tickets.find({ userId: req.userId });
+        const tickets = await Tickets.find({ userId: req.user.id });
 
         if (tickets.length > 0) {
             res.status(200).json({ success: true, data: tickets });
