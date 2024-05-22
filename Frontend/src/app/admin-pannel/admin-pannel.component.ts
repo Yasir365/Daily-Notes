@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'admin-pannel',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './admin-pannel.component.html',
   styleUrl: './admin-pannel.component.scss'
 })
