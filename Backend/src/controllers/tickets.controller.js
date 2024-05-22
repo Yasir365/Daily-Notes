@@ -25,7 +25,7 @@ const add = async (req, res) => {
     }
 
     const { title, description, deadline } = req.body;
-    const userId = req.userId;
+    const userId = req.user.id;
     try {
         const newTicket = new Tickets({
             title,
@@ -83,7 +83,7 @@ const edit = async (req, res) => {
 
 
 const remove = async (req, res) => {
-    const userId = req.userId;
+    const userId = req.user.id;
     const ticketId = req.query.id;
 
     if (!ticketId) {
